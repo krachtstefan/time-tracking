@@ -32,14 +32,16 @@ function App() {
   };
 
   return (
-    <div>
-      <ClientForm
-        onSubmit={(newClient) => {
-          // when the ClientForm sends us a new client via the `onSubmit` callback
-          // we will add it to the list of clients
-          setClients([...clients, newClient]);
-        }}
-      />
+    <div className="p-5">
+      <div className="w-[300px]">
+        <ClientForm
+          onSubmit={(newClient) => {
+            // when the ClientForm sends us a new client via the `onSubmit` callback
+            // we will add it to the list of clients
+            setClients([...clients, newClient]);
+          }}
+        />
+      </div>
       <h2>Clients</h2>
       <ClientList
         clients={clients}
