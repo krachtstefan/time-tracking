@@ -1,4 +1,5 @@
 import ClientForm from "./components/client-form";
+import ClientList from "./components/client-list";
 import { useState } from "react";
 
 export type Client = {
@@ -21,6 +22,15 @@ function App() {
     setRunningTimer(undefined);
   };
 
+  const onClientClick = (client: string) => {
+    const isTimerRunning = client === runningTimer;
+    if (isTimerRunning) {
+      stopTimer();
+    } else {
+      startTimer(client);
+    }
+  };
+
   return (
     <div>
       <ClientForm
@@ -31,25 +41,11 @@ function App() {
         }}
       />
       <h2>Clients</h2>
-      <ul>
-        {clients.map((client) => {
-          const isTimerRunning = client.name === runningTimer;
-          return (
-            <li key={client.name}>
-              {client.name} <span>{client.hourlyRate} / hour</span>
-              {!isTimerRunning ? (
-                <button type="button" onClick={() => startTimer(client.name)}>
-                  ▶️
-                </button>
-              ) : (
-                <button type="button" onClick={() => stopTimer()}>
-                  ⏹️
-                </button>
-              )}
-            </li>
-          );
-        })}
-      </ul>
+      <ClientList
+        clients={clients}
+        runningTimer={runningTimer}
+        onClick={onClientClick}
+      />
     </div>
   );
 }
