@@ -1,5 +1,6 @@
 import ClientForm from "./components/client-form";
 import ClientList from "./components/client-list";
+import Headline from "./components/headline";
 import { useState } from "react";
 
 export type Client = {
@@ -32,7 +33,7 @@ function App() {
   };
 
   return (
-    <div className="p-5">
+    <div className="p-1">
       <div className="w-[300px]">
         <ClientForm
           onSubmit={(newClient) => {
@@ -42,7 +43,7 @@ function App() {
           }}
         />
       </div>
-      <h2>Clients</h2>
+      <Headline>Client</Headline>
       <ClientList
         clients={clients}
         runningTimer={runningTimer}
